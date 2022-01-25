@@ -8,7 +8,7 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
-    this.currentSize = 0
+    this.currentSize = 0;
   }
 
   display() {
@@ -26,10 +26,29 @@ class LinkedList {
     this.head = node;
     this.currentSize++;
   }
+
+  removeFirst() {
+    if (!this.head) {
+      return;
+    } else if (this.currentSize == 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+    }
+    this.currentSize--;
+  }
+
+  getSize() {
+    return this.currentSize;
+  }
 }
 
 let l1 = new LinkedList();
 l1.addFirst(3);
 l1.addFirst(2);
 l1.addFirst(1);
+console.log("size - ", l1.getSize());
+l1.removeFirst();
+console.log("size - ", l1.getSize());
 l1.display();
