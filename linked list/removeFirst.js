@@ -8,6 +8,7 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
+    this.tail = null;
     this.currentSize = 0;
   }
 
@@ -22,8 +23,13 @@ class LinkedList {
   addFirst(data) {
     let node = new Node();
     node.data = data;
-    node.next = this.head;
-    this.head = node;
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      node.next = this.head;
+      this.head = node;
+    }
     this.currentSize++;
   }
 
@@ -48,7 +54,5 @@ let l1 = new LinkedList();
 l1.addFirst(3);
 l1.addFirst(2);
 l1.addFirst(1);
-console.log("size - ", l1.getSize());
 l1.removeFirst();
-console.log("size - ", l1.getSize());
 l1.display();

@@ -8,25 +8,23 @@ class Node {
 }
 
 class LinkedList {
-  constructor(head = null) {
-    this.head = head;
+  constructor() {
+    this.head = null;
+    this.tail = null;
     this.currentSize = 0;
   }
 
-  add(value) {
-    let newNode = new Node();
-    newNode.data = value;
-    newNode.next = null;
+  add(data) {
+    let node = new Node();
+    node.data = data;
     if (!this.head) {
-      this.head = newNode;
+      this.head = node;
+      this.tail = node;
     } else {
-      let temp = this.head;
-      while (temp.next) {
-        temp = temp.next;
-      }
-      temp.next = newNode;
+      this.tail.next = node;
+      this.tail = node;
     }
-    this.currentSize = this.currentSize + 1;
+    this.currentSize++;
   }
 
   display() {
@@ -37,16 +35,16 @@ class LinkedList {
     }
   }
 
-  getSize(){
-    return this.currentSize
+  getSize() {
+    return this.currentSize;
   }
-
 }
 let list = new LinkedList();
 list.add(1);
 list.add(2);
 list.add(3);
 list.add(4);
-console.log(list.getSize())
+list.display()
+// console.log(list.getSize());
 // The complexity to find size of linkedlist = O(n); because we have to go through n elements exactly once that are present in the linked list
 // Now we can easily reduce it to O(1) if we keep a variable which tracks number of nodes and increment it everytime we add a node in the list
